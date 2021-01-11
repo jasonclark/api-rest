@@ -13,7 +13,7 @@ const resources = [
  
 //READ Request Handlers
 app.get('/api/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p>');
+  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><p><a href="resources">View a list of the API resources</a></p>');
 });
  
 app.get('/api/resources', (req,res)=> {
