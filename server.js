@@ -2,7 +2,10 @@ const express = require('express');
 const Joi = require('joi'); //used for validation
 const app = express();
 app.use(express.json());
- 
+//Make Express pass '2' as the 3rd argument to `JSON.stringify()`
+app.set('json spaces', 2);
+
+
 const resources = [
 {"id": "1", "creator": "A Tribe Called Quest", "text": "Vo-cab-u-lary's necessary when digging into my library"},
 {"id": "2", "creator": "A Tribe Called Quest", "text": "Well, then grab the microphone and let your words rip"},
