@@ -1,5 +1,5 @@
 # web-service
-An example of a REST API for teaching and learning; Sample API uses A Tribe Called Quest lyrics
+An example of a REST API for teaching and learning; Sample API uses A Tribe Called Quest lyrics. It is live at [web-service-406.herokuapp.com](https://web-service-406.herokuapp.com/).
 
 ## Technology
 
