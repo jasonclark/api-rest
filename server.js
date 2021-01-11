@@ -21,14 +21,14 @@ app.get('/api/', (req, res) => {
 });
  
 app.get('/api/resources', (req,res)=> {
-  res.send(resources);
+  res.json(resources);
 });
 
 //Read Request Handler for single resource using id and regex validating that id is a number
 app.get('/api/resource/:id([0-9]+)', (req, res) => {
   const resource = resources.find(c => c.id === req.params.id);
   if (!resource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
-  res.send(resource);
+  res.json(resource);
 });
  
 //CREATE Request Handler
@@ -44,7 +44,7 @@ app.post('/api/resource', (req, res)=> {
     text: req.body.text
   };
   resources.push(resource);
-  res.send(resource);
+  res.json(resource);
 });
  
 //UPDATE Request Handler for single resource using id and regex validating that id is a number
@@ -57,7 +57,7 @@ app.put('/api/resource/:id([0-9]+)', (req, res) => {
     return;
   }
   resource.text = req.body.text;
-  res.send(resource);
+  res.json(resource);
 });
  
 //DELETE Request Handler for single resource using id and regex validating that id is a number
@@ -66,7 +66,7 @@ app.delete('/api/resource/:id([0-9]+)', (req, res) => {
   if (!resource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource to delete.</h2>');
   const index = resources.indexOf(resource);
   resources.splice(index,1);
-  res.send(resource);
+  res.json(resource);
 });
  
 function validateResource(resource) {
