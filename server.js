@@ -27,7 +27,7 @@ app.get('/api/resources', (req,res)=> {
   res.json(resources);
 });
 
-//Read Request Handler for single resource using id and regex validating that id is a number
+//READ Request Handler for single resource using id and regex validating that id is a number
 app.get('/api/resource/:id([0-9]+)', (req, res) => {
   const resource = resources.find(c => c.id === req.params.id);
   if (!resource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
@@ -35,7 +35,7 @@ app.get('/api/resource/:id([0-9]+)', (req, res) => {
 });
  
 //CREATE Request Handler
-app.post('/api/resource', (req, res)=> {
+app.post('/api/resources', (req, res)=> {
   const { error } = validateResource(req.body);
   if (error) {
     res.status(400).send(error.details[0].message)
