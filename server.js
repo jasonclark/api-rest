@@ -5,7 +5,6 @@ app.use(express.json());
 //Make Express pass '2' as the 3rd argument to `JSON.stringify()`
 app.set('json spaces', 2);
 
-
 const resources = [
 {"id": "1", "creator": "A Tribe Called Quest", "text": "Vo-cab-u-lary's necessary when digging into my library"},
 {"id": "2", "creator": "A Tribe Called Quest", "text": "Well, then grab the microphone and let your words rip"},
@@ -15,6 +14,10 @@ const resources = [
 ]
  
 //READ Request Handlers
+/*
+route = /api/resources
+action = GET: retrieve and list all resources
+*/
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><p><a href="api/resources">View a list of the API resources</a></p>');
 });
@@ -28,6 +31,10 @@ app.get('/api/resources', (req,res)=> {
 });
 
 //READ Request Handler for single resource using id and regex validating that id is a number
+/*
+route = /api/resource/id
+action = GET: find and retrieve resource by id
+*/
 app.get('/api/resource/:id([0-9]+)', (req, res) => {
   const resource = resources.find(c => c.id === req.params.id);
   if (!resource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
@@ -35,6 +42,10 @@ app.get('/api/resource/:id([0-9]+)', (req, res) => {
 });
  
 //CREATE Request Handler
+/*
+route = /api/resources
+action = POST: creates a new resource
+*/
 app.post('/api/resources', (req, res)=> {
   const { error } = validateResource(req.body);
   if (error) {
@@ -51,6 +62,10 @@ app.post('/api/resources', (req, res)=> {
 });
  
 //UPDATE Request Handler for single resource using id and regex validating that id is a number
+/*
+route = /api/resource/id
+action = PUT: retrieve and update resource by id
+*/
 app.put('/api/resource/:id([0-9]+)', (req, res) => {
   const resource = resources.find(c=> c.id === req.params.id);
   if (!resource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource to update.</h2>');
@@ -64,6 +79,10 @@ app.put('/api/resource/:id([0-9]+)', (req, res) => {
 });
  
 //DELETE Request Handler for single resource using id and regex validating that id is a number
+/*
+route = /api/resource/id
+action = DELETE: retrieve and delete resource by id
+*/
 app.delete('/api/resource/:id([0-9]+)', (req, res) => {
   const resource = resources.find( c=> c.id === req.params.id);
   if (!resource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource to delete.</h2>');
