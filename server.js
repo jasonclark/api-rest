@@ -19,11 +19,11 @@ route = /api/resources
 action = GET: retrieve and list all resources
 */
 app.get('/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><p><a href="api/resources">View a list of the API resources</a></p>');
+  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd></dl><p><a href="api/resources">Retrieve list of all API resources</a></p>');
 });
 
 app.get('/api/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><p><a href="resources">View a list of the API resources</a></p>');
+  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd></dl><p><a href="resources">Retrieve list of all API resources</a></p>');
 });
  
 app.get('/api/resources', (req,res)=> {
