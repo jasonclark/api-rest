@@ -19,15 +19,29 @@ route = /api/resources
 action = GET: retrieve and list all resources
 */
 app.get('/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd></dl><p><a href="api/resources">Retrieve list of all API resources</a></p>');
+  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd><dt>Route:</dt><dd>/api/resources/search?q=ADD-QUERY-HERE</dd><dt>Action:</dt><dd>GET => search and retrieve resources by matching string in text field</dd></dl><p><a href="api/resources">Retrieve list of all API resources</a></p>');
 });
 
 app.get('/api/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd></dl><p><a href="resources">Retrieve list of all API resources</a></p>');
+  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd><dt>Route:</dt><dd>/api/resources/search?q=ADD-QUERY-HERE</dd><dt>Action:</dt><dd>GET => search and retrieve resources by matching string in text field</dd></dl><p><a href="resources">Retrieve list of all API resources</a></p>');
 });
  
 app.get('/api/resources', (req,res)=> {
   res.json(resources);
+});
+
+//READ Request Handler for searching resources and returning matches
+/*
+route = /api/resources/search?q=ADD-QUERY-HERE
+action = GET: search and retrieve resources by matching string in text field
+*/
+app.get('/api/resources/search', (req, res) => {
+//app.get('/api/resources/search/:q', (req, res) => {
+  //let q = req.params.q;
+  let q = req.query.q
+  const results = resources.filter(it => new RegExp(q, "i").test(it.text));
+  if (!results) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
+  res.json(results);
 });
 
 //READ Request Handler for single resource using id and regex validating that id is a number
