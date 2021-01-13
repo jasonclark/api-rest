@@ -18,14 +18,6 @@ const resources = [
 route = /api/resources
 action = GET: retrieve and list all resources
 */
-app.get('/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd><dt>Route:</dt><dd>/api/resources/search?q=ADD-QUERY-HERE</dd><dt>Action:</dt><dd>GET => search and retrieve resources by matching string in text field</dd></dl><p><a href="api/resources">Retrieve list of all API resources</a></p>');
-});
-
-app.get('/api/', (req, res) => {
-  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd><dt>Route:</dt><dd>/api/resources/search?q=ADD-QUERY-HERE</dd><dt>Action:</dt><dd>GET => search and retrieve resources by matching string in text field</dd></dl><p><a href="resources">Retrieve list of all API resources</a></p>');
-});
- 
 app.get('/api/resources', (req,res)=> {
   res.json(resources);
 });
@@ -111,7 +103,12 @@ function validateResource(resource) {
   };
   return Joi.validate(resource, schema);
 }
- 
+
+//Default READ Request Handler route and index page 
+app.get('*', (req, res) => {
+  res.send('<h1>Welcome to an example REST API for teaching and learning.</h1><p>This sample API uses A Tribe Called Quest lyrics.</p><dl><dt>Route:</dt><dd>/api/resources</dd><dt>Action:</dt><dd>GET => retrieve and list all resources</dd><dt>Route:</dt><dd>/api/resource/id</dd><dt>Action:</dt><dd>GET => find and retrieve resource by id</dd><dt>Route:</dt><dd>/api/resources/search?q=ADD-QUERY-HERE</dd><dt>Action:</dt><dd>GET => search and retrieve resources by matching string in text field</dd></dl><p><a href="../api/resources">Retrieve list of all API resources</a></p>');
+}); 
+
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
