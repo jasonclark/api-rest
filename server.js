@@ -5,14 +5,8 @@ app.use(express.json());
 //Make Express pass '2' as the 3rd argument to `JSON.stringify()`
 app.set('json spaces', 2);
 
-const resources = [
-{"id": "1", "creator": "A Tribe Called Quest", "text": "Vo-cab-u-lary's necessary when digging into my library"},
-{"id": "2", "creator": "A Tribe Called Quest", "text": "Well, then grab the microphone and let your words rip"},
-{"id": "3", "creator": "A Tribe Called Quest", "text": "You on point Tip? Yo, all the time, Phife"},
-{"id": "4", "creator": "A Tribe Called Quest", "text": "Back in the days when I was a teenager before I had status and before I had a pager"},
-{"id": "5", "creator": "A Tribe Called Quest", "text": "Talk to Joey, Earl, Kendrick, and Cole, gatekeepers of flow"}
-]
- 
+const resources = require('./resources.json');
+
 //READ Request Handlers
 /*
 route = /api/resources
