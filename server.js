@@ -41,6 +41,18 @@ app.get('/api/resource/:id([0-9]+)', (req, res) => {
   res.json(resource);
 });
  
+//READ Request Handler for retrieving single random resource
+/*
+route = /api/resource/random
+action = GET: retrieve random single resource
+*/
+app.get('/api/resource/random', (req, res) => {
+  let values = Object.values(resources);
+  const randomResource = values[parseInt(Math.random() * values.length)];
+  if (!randomResource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
+  res.json(randomResource);
+});
+
 //CREATE Request Handler
 /*
 route = /api/resources
