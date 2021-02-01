@@ -54,8 +54,9 @@ app.get('/api/resource/random', (req, res) => {
   if (format === "text") {
     let textResource = randomResource.text;
     res.status(200).send(textResource);
-  };
-  res.status(200).json(randomResource);
+  } else {
+    res.status(200).json(randomResource);
+  }
 });
 
 //CREATE Request Handler
