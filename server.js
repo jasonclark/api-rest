@@ -24,7 +24,7 @@ action = GET: search and retrieve resources by matching string in text field
 app.get('/api/resources/search', (req, res) => {
 //app.get('/api/resources/search/:q', (req, res) => {
   //let q = req.params.q;
-  let q = req.query.q
+  let q = req.query.q;
   const results = resources.filter(item => new RegExp(q, "i").test(item.text));
   if (!results) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
   res.status(200).json(results);
@@ -50,6 +50,11 @@ app.get('/api/resource/random', (req, res) => {
   let values = Object.values(resources);
   const randomResource = values[parseInt(Math.random() * values.length)];
   if (!randomResource) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Could not find that resource.</h2>');
+  let format = req.query.format;
+  if (format === "text") {
+    let textResource = randomResource.text;
+    res.status(200).send(textResource);
+  };
   res.status(200).json(randomResource);
 });
 
