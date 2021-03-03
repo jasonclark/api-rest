@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/jasonclark/api-rest#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "joi": "^17.3.0"
   },

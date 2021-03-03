@@ -1,7 +1,10 @@
 const express = require('express');
+const compression = require('compression');
 const Joi = require('joi'); //used for validation
 const app = express();
 app.use(express.json());
+//Compress all HTTP responses
+app.use(compression());
 //Make Express pass '2' as the 3rd argument to `JSON.stringify()`
 app.set('json spaces', 2);
 
