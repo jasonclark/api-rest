@@ -7,7 +7,11 @@ app.use(express.json());
 //Make Express pass '2' as the 3rd argument to `JSON.stringify()`
 app.set('json spaces', 2);
 //Compress all HTTP responses using node.js compression middleware
-app.use(compression());
+//app.use(compression());
+app.use(compression({
+  filter: function () { return true; }
+}));
+
 
 const resources = require('./resources.json');
 
