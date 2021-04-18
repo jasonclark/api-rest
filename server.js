@@ -12,7 +12,6 @@ app.use(compression({
   filter: function () { return true; }
 }));
 
-
 const resources = require('./resources.json');
 
 //READ Request Handlers
@@ -20,8 +19,9 @@ const resources = require('./resources.json');
 route = /api/resources
 action = GET: retrieve and list all resources
 */
-app.get('/api/resources', (req,res)=> {
-  res.status(200).json(resources);
+app.get('/api/resources', (req, res)=> {
+  let limit = req.query.limit || 10;
+  res.status(200).json(resources.slice(0,limit));
 });
 
 //READ Request Handler for searching resources and returning matches
