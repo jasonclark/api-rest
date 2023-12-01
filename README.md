@@ -7,7 +7,7 @@ An example of a REST API for teaching and learning; Sample API uses A Tribe Call
 * CSS
 * Javascript
 * [Node.js](https://nodejs.org/en/)
-* [Heroku](https://heroku.com/)
+* [GitHub Codespaces](https://docs.github.com/en/codespaces)
 
 ## People
 
